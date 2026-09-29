@@ -1,0 +1,72 @@
+.showcase {
+  padding: var(--space-12) var(--space-4);
+}
+
+.showcase--light {
+  background: var(--bg-light);
+  color: var(--text-primary);
+}
+
+.showcase--dark {
+  background: var(--bg-dark);
+  color: var(--text-primary-inverse);
+}
+
+.showcase__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.showcase__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 produits = 2 colonnes */
+  gap: var(--space-4);
+}
+
+.showcase__card {
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  transition: border-color var(--transition-base);
+}
+
+/* Au survol, la bordure prend la couleur d'accent de la marque */
+.showcase__card:hover {
+  border-color: var(--card-accent);
+}
+
+.showcase__card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* garde une proportion cohérente quelle que soit la largeur */
+  background: rgba(128, 128, 128, 0.08);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+  object-fit: contain; /* l'image est contenue dans le cadre sans être rognée */
+}
+
+.showcase__card-category {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--card-accent);
+}
+
+.showcase__card-name {
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 640px) {
+  .showcase__grid {
+    grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+  }
+}

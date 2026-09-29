@@ -1,0 +1,15 @@
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--accent-apple),
+    var(--accent-samsung),
+    var(--accent-pixel)
+  );
+  transform-origin: left; /* la barre grandit depuis la gauche, pas depuis le centre */
+  z-index: 100; /* au-dessus même du header */
+}

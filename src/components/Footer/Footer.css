@@ -1,0 +1,55 @@
+.footer {
+  background: var(--bg-light);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: var(--space-8) var(--space-4) var(--space-4);
+}
+
+/* Grille à 4 colonnes de largeur égale (1fr = une "part" égale de l'espace disponible) */
+.footer__columns {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+}
+
+.footer__col-title {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.footer__col ul {
+  list-style: none; /* on enlève les puces par défaut des <li> */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.footer__col a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+
+.footer__bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* Sur mobile, on passe de 4 colonnes à 2 pour que ça reste lisible */
+@media (max-width: 768px) {
+  .footer__columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

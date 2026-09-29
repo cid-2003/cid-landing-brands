@@ -1,0 +1,68 @@
+.brand-hero {
+  position: relative;
+  height: 100vh; /* prend toute la hauteur de l'écran */
+  overflow: hidden; /* empêche la vidéo zoomée de déborder visuellement*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FOnd claire par défaut (Apple, Pixel) */
+.brand-hero--light {
+  background: var(--bg-light);
+  color: var(--text-primary);
+}
+
+/* Fond sombre (Samsung) -on changera aussi les couleurs de texte */
+.brand-hero--dark {
+  background: var(--bg-dark);
+  color: var(--text-primary-inverse);
+}
+
+.brand-hero__video {
+  position: absolute;
+  inset: 0; /* raccourci pour top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* la vidéo remplit tout l'espace sans se déformer, quitte à être rognée */
+}
+
+.brand-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.4)
+  );
+}
+
+.brand-hero__content {
+  position: relative; /* pour passer au-dessus de la vidéo et de l'overlay */
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.brand-hero__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: 700;
+  color: #fff; /* texte blanc car il est toujours sur la vidéo, quel que soit le thème */
+}
+
+.brand-hero__tagline {
+  font-family: var(--font-body);
+  font-size: var(--fs-xl);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .brand-hero__title {
+    font-size: var(--fs-3xl);
+  }
+  .brand-hero__tagline {
+    font-size: var(--fs-lg);
+  }
+}

@@ -1,0 +1,69 @@
+.comparison {
+  background: var(--bg-light);
+  color: var(--text-primary);
+  padding: var(--space-16) var(--space-4);
+}
+
+.comparison__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.comparison__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  text-align: center;
+}
+
+.comparison__subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-8);
+}
+
+/* Chaque "row" est une grille à 4 colonnes :
+   1 pour le label du critère + 1 pour chaque marque */
+.comparison__row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.comparison__row--header {
+  border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+}
+
+.comparison__cell {
+  padding: var(--space-3) var(--space-2);
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: center;
+}
+
+.comparison__cell--label {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.comparison__cell--brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(
+    --col-accent
+  ); /* couleur d'accent de la marque, passée en style inline */
+  justify-content: center;
+  text-align: center;
+}
+
+/* Sur mobile, un tableau à 4 colonnes ne passe pas — on le fait défiler horizontalement
+   plutôt que d'essayer de tout compresser (ce qui rendrait le texte illisible) */
+@media (max-width: 640px) {
+  .comparison__table {
+    overflow-x: auto;
+  }
+  .comparison__row {
+    grid-template-columns: 100px repeat(3, 140px);
+    min-width: 520px;
+  }
+}

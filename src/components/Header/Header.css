@@ -1,0 +1,190 @@
+/* Le header reste collé en haut de l'écran même quand on scrolle */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50; /* s'affiche au-dessus du reste du contenu */
+  background: var(--bg-light);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Conteneur interne : centre le contenu et l'empêche de s'étaler à l'infini sur grand écran */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo à gauche, nav au milieu, actions à droite */
+  padding: var(--space-2) var(--space-4);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px dashed rgba(0, 0, 0, 0.2); /* petit détail visuel temporaire, à ajuster */
+  padding: var(--space-1) var(--space-2);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* espace entre chaque lien du menu */
+}
+
+.header__nav-link {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+}
+
+.header__icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  padding: var(--space-1);
+}
+
+/* Le mega-menu qui s'affiche sous le header au survol d'une marque */
+.header__megamenu {
+  position: absolute; /* se place par-dessus le contenu, sans pousser le reste de la page */
+  left: 0;
+  right: 0;
+  background: var(--bg-light);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.header__megamenu-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-4);
+  display: flex;
+  gap: var(--space-6);
+}
+
+.header__megamenu-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  transition: color var(--transition-base);
+}
+
+/* Au survol, le texte prend la couleur d'accent de la marque
+   (définie en JS via --item-accent, voir Header.tsx) */
+.header__megamenu-item:hover {
+  color: var(--item-accent);
+}
+
+.header__megamenu-thumb {
+  width: 140px;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+}
+
+/* Sur mobile, on cache le menu horizontal (on ajoutera un menu burger plus tard) */
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+  }
+}
+
+/* Le bouton burger est caché par défaut (desktop) */
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__burger-line {
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* Quand le menu est ouvert, on transforme les 3 barres en croix (X) */
+.header__burger-line.is-open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.header__burger-line.is-open:nth-child(2) {
+  opacity: 0; /* la barre du milieu disparaît */
+}
+.header__burger-line.is-open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.header__mobile-menu {
+  overflow: hidden; /* nécessaire pour que l'animation de "height" soit propre */
+  background: var(--bg-light);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.header__mobile-group {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: var(--space-2) var(--space-4);
+}
+
+.header__mobile-brand {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  color: var(--item-accent, var(--text-primary));
+  text-decoration: none;
+  padding: var(--space-1) 0;
+}
+
+.header__mobile-products {
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--space-2);
+}
+
+.header__mobile-product-link {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: var(--space-1) 0;
+}
+
+/* En dessous de 768px : on cache la nav desktop et on montre le burger */
+@media (max-width: 768px) {
+  .header__nav--desktop {
+    display: none;
+  }
+  .header__burger {
+    display: flex;
+  }
+}
+
+/* Au-dessus de 768px : le menu mobile ne doit jamais s'afficher, même si "mobileMenuOpen" est resté true
+   (par exemple si l'utilisateur agrandit sa fenêtre sans avoir refermé le menu) */
+@media (min-width: 769px) {
+  .header__mobile-menu {
+    display: none;
+  }
+}
